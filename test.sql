@@ -1,50 +1,22 @@
 SELECT
-    SWITCH(
-        MODE = 1,
-        'Walk',
-        MODE = 2,
-        'Bike',
-        MODE = 3,
-        'Auto Driver',
-        MODE = 4,
-        'Auto Passenger',
-        MODE = 5,
-        'Transit Bus',
-        MODE = 6,
-        'Subway',
+    Switch(
+        PER.GEND = 1,
+        "Male",
+        PER.GEND = 2,
+        "Female",
         True,
-        'Other'
-    ) AS TransportationMode,
-    COUNT(*) AS TripCount,
-    ROUND(
-        (
-            COUNT(*) * 100.0 / (
-                SELECT
-                    COUNT(*)
-                FROM
-                    LowincomeMAPCtrips
-            )
-        ),
-        2
-    ) AS PercentageOfTrips
+        "Undefined"
+    ) AS Gender,
+    COUNT(*) AS Number_of_Bicycle_Trips,
+    AVG(PLACE.TRPDUR) AS Average_Duration_Minutes
 FROM
-    LowincomeMAPCtrips
+    PLACE,
+    PER
+WHERE
+    PLACE.SAMPN = PER.SAMPN
+    AND PLACE.PERNO = PER.PERNO
+    AND PLACE.MODE = 2
+    AND PLACE.PLANO > 1
+    AND PLACE.TRPDUR IS NOT NULL
 GROUP BY
-    SWITCH(
-        MODE = 1,
-        'Walk',
-        MODE = 2,
-        'Bike',
-        MODE = 3,
-        'Auto Driver',
-        MODE = 4,
-        'Auto Passenger',
-        MODE = 5,
-        'Transit Bus',
-        MODE = 6,
-        'Subway',
-        True,
-        'Other'
-    )
-ORDER BY
-    COUNT(*) DESC;
+    PER.GEND

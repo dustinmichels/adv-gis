@@ -13,16 +13,20 @@ Sep 24, 2025
 Code:
 
 ```sql
-SELECT AVG(HHSIZ) AS avg_household_size
-FROM HH
-WHERE INCOME < 4;
+SELECT
+    AVG(HHSIZ) AS avg_household_size
+FROM
+    HH
+WHERE
+    (INCOME < 4)
+    AND (HH.MPO = "MAPC");
 ```
 
 Output:
 
 | avg_household_size |
-| :----------------- |
-| 1.69566457501426   |
+| ------------------ |
+| 1.63441603317208   |
 
 ### (B) What is the average age of women versus men in low-income households in the MAPC region where the person reported their age (exclude records when AGE=99 or 0)?
 

@@ -1,0 +1,27 @@
+{
+  "folders": [
+    {
+      "path": ".",
+      "name": "[root]"
+    },
+    {
+      "path": "lab3-sql"
+    },
+    {
+      "path": "lab4-automation"
+    },
+    {
+      "path": "lab7-network"
+    },
+    {
+      "path": "lab8-interpolation"
+    },
+    {
+      "path": "lab9-spatial"
+    },
+    {
+      "path": "lab10-multidimensional"
+    }
+  ],
+  "settings": {}
+}
